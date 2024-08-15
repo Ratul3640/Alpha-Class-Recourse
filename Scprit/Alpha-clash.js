@@ -55,6 +55,11 @@ function handleKeyboardKeyUpEvent(event) {
         const currentLife = getTextElementValueById('current-life');
         const updatedLife = currentLife - 1;
         setTextElementValueById('current-life', updatedLife)
+
+
+        if (updatedLife === 0) {
+            gameOver();
+        }
         // const currentLifeElement = document.getElementById('current-life');
         // const currentLifeText = currentLifeElement.innerText;
         // const currentLife = parseInt(currentLifeText)
@@ -86,6 +91,15 @@ function continueGame() {
 
 function play() {
     hideElementById('home-screen');
+    hideElementById('final-score')
     showElementById('play-ground');
-    continueGame()
+    setTextElementValueById('current-life', 5)
+    setTextElementValueById('current-score', 0);
+    continueGame();
+}
+
+
+function gameOver() {
+    hideElementById('play-ground');
+    showElementById('final-score')
 }
